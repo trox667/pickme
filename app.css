@@ -1,0 +1,7 @@
+#root Button {
+  position: fixed;
+  top: 0;
+  right: 0;
+  text-orientation: mixed;
+  writing-mode: vertical-lr;
+}
