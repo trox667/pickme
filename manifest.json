@@ -8,6 +8,14 @@
       "matches": ["*://*.mozilla.org/*"],
       "js": ["dist/index.js"],
       "css": ["dist/index.css"]
+    },
+    {
+      "matches": ["*://*.mozilla.org/*"],
+      "js": ["dist/content.js"],
+      "all_frames": true
     }
-  ]
+  ],
+  "background": {
+    "scripts": ["dist/background.js"]
+  }
 }

@@ -1,9 +1,7 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
-import Button from '@material-ui/core/Button'
 
 import './app.css'
-import Menu from './menu'
 
 function useToggleState(initialState = false) {
   const [state, setState] = useState(initialState)
@@ -13,21 +11,24 @@ function useToggleState(initialState = false) {
   return [state, toggleState, setState]
 }
 
-function App({ title = 'ShitMyWay' }) {
-  const [isMenuVisible, toggleMenu] = useToggleState()
+function App() {
 
-  return isMenuVisible ? (
-    <div>
-      {' '}
-      <Menu />
-      <Button variant="contained" color="secondary" onClick={toggleMenu}>
-        {title}
-      </Button>
-    </div>
-  ) : (
-    <Button variant="contained" color="secondary" onClick={toggleMenu}>
-      {title}
-    </Button>
+  const [port, setPort] = useState(null)
+
+  useEffect(() => {
+    let port = browser.runtime.connect({name: 'ui'})
+    setPort(port)
+    return () => {
+      port.disconnect()
+    }
+  }, [])
+
+  const send = () => {
+
+  }
+
+  return (
+    <button id="click" onClick={() => console.log('btn clicked')}>Click Me!</button>
   )
 }
 
