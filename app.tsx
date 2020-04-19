@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 
 
 import './app.css'
+import { connectToBg, PORT_UI, sendMessage } from './communication'
 
 function useToggleState(initialState = false) {
   const [state, setState] = useState(initialState)
@@ -16,7 +17,8 @@ function App() {
   const [port, setPort] = useState(null)
 
   useEffect(() => {
-    let port = browser.runtime.connect({name: 'ui'})
+    let port = connectToBg(PORT_UI)
+    sendMessage(port, {action: 'Hello'})
     setPort(port)
     return () => {
       port.disconnect()

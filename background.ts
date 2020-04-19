@@ -1,5 +1,8 @@
-declare const browser
+import { onConnect, onMessage } from './communication'
 
-browser.runtime.onConnect.addListener((port) => {
+onConnect((port) => {
   console.log('someone connected', port)
+  onMessage(port, (message) => {
+    console.log(message)
+  })
 })
